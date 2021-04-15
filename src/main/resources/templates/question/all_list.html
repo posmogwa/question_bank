@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>전체 문제 표시</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<style>
+		.bold{ font-weight: bold;}
+		.error{
+			color: red; font-style: italic; font-weight: bold;
+		}
+		
+		body{
+			font-family: 맑은고딕;
+		}
+		
+	 	input[id="a"] {
+        position: relative;
+        top: 1px;
+        margin-right: 4px;
+      	}
+      	
+      	label {
+        position: relative;
+        top: 1px;
+        bottom: 0px;
+        margin: 0px;
+      }
+		
+	</style>
+	<script src= "https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+
+
+</head>
+
+<body>
+    <div class= "container col-5" style= "margin-top: 10px;">
+    	
+    	<!-- 상단 메뉴 -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-3 pt-0 pb-0" style= " border-radius: 5px;">
+			<a class="navbar-brand" href="#">문제은행</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						문제은행
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{'/question/add'}">문제출제</a>
+						<a class="dropdown-item" th:href="@{'/question/all_list'}">문제보기</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Test
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">시험 보기</a>
+						<a class="dropdown-item" href="#">시험 결과</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+					</li>
+				</ul>
+				<span class="navbar-text"><a th:href="@{'/user/register'}" class= "nav-link pr-0"> 회원가입</a></span>
+				<span class="navbar-text"><a th:href="@{'/user/login'}" class= "nav-link pr-0">로그인</a></span>
+			</div>
+		</nav>    
+		<!-- End 상단메뉴 -->  
+	
+
+		<form action= "evaluate" method= "post">
+        <div class="card mb-3"  th:each= "question : ${al_question}" >
+            <div class="card-header mb-2"  th:text= "${question.title}"></div>
+            <div class="input-group-prepend"   th:each= "q, status : ${#strings.listSplit(question.choice, ',')}">
+                <span class="input-group-text" ><label><input id= "a" type= "radio"  th:name= "${question.uuid}" th:value= "${status.index+1}" th:text= "${new com.ezen.question_bank.CircleNumber().getOneCircleNum(status.index)}" /></label></span>
+                <div class="form-control" th:text= "${q}"></div>
+            </div>
+            <div class="input-group-prepend mt-2">
+                <span class="input-group-text">정답</span>
+                <div class= "form-control">
+                    <div th:text= "${question.correct_answer + '번'}"></div>
+                </div>
+                <button id= "submit" class="btn btn-outline-secondary btn-sm" type="submit">답 표시</button>
+            </div>
+        </div>
+        
+        <input type= "submit" value= "채점" />
+        </form>
+	
+	</div>
+	
+	
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

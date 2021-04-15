@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>문제 전체 표시</title>
+	<!-- Bootstrap CSS -->
+	<div th:fragment="bootstrap_css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	</div>
+</head>
+
+<body>
+  
+    	<!-- 상단 메뉴 -->
+    	<div th:fragment="top_menu">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-3 pt-0 pb-0" style= " border-radius: 5px;">
+			<a class="navbar-brand" href="#">문제은행</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						문제은행
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{'/question/add'}">문제출제</a>
+						<a class="dropdown-item" th:href="@{'/question/list'}">문제보기</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Test
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{'/test/create'}">시험 보기</a>
+						<a class="dropdown-item" href="#">시험 결과</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+					</li>
+				</ul>
+				<span class="navbar-text"><a th:href="@{'/user/register'}" class= "nav-link pr-0"> 회원가입</a></span>
+				<span class="navbar-text"><a th:href="@{'/user/login'}" class= "nav-link pr-0">로그인</a></span>
+			</div>
+		</nav>
+		</div>    
+		<!-- End 상단메뉴 -->      
+		
+		<!-- Footer 들어갈자리 -->
+		
+	<div th:fragment="bootstrap_js">
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+	</div>
+</body>
+</html>

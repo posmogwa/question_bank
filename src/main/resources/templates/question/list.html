@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/main_layout}">
+<head>
+	<meta charset="UTF-8">
+	<title>문제 전체 표시</title>
+	
+</head>
+
+	<body>
+	<div class="container">
+	<div layout:fragment="content">
+		<div class="row justify-content-end">
+		<div class="col-2">
+		<a th:href="@{/question/add}" >
+					<button type="button" 
+						class="btn btn-outline-success btn-sm">
+						문제 추가
+					</button>
+					</a>
+		</div>
+	</div>
+		
+   		<table class="table table-hover">
+       <thead>  
+	        <tr style="text-align:center">
+	        <th>uuid</th>
+	        <th>문제 제목</th>
+	        <th>선택지</th>
+	        <th>정답</th>
+	        <th>작성일자</th>
+	        <th></th>
+	        </tr>
+   	   </thead>
+   		
+    <tr th:each="question, status : ${questionList}" style="text-align:center">      
+        <td th:text="${question.uuid}" ></td>
+        <td th:text="${question.title}" ></td>
+        <td th:text="${question.choice}" ></td>
+        <td th:text="${question.correctAnswer}"></td>
+        <td th:text="${question.createdDate}"></td>
+   		<td>
+			<button type="button" class="btn btn-secondary btn-sm"	data-toggle="modal"
+						th:attr="data-target='#exampleModal'+${status.count}">보기</button>
+
+					<!-- Modal -->
+					<div class="modal fade bd-example-modal-sm"
+						th:attr=" id='exampleModal'+${status.count}" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm" role="document">
+							<div class="modal-content">
+								<div class="card" style="width: 20rem;">
+									<div class="card-header" style="text-align:left">
+										<span class="badge badge-secondary">제목</span>
+										<div th:text="${question.title}"></div>
+									</div>
+									<div class="card-body" style="text-align:left">
+										<span class="badge badge-secondary">선택지</span>
+                                        <div th:text="${question.choice}"></div>
+									</div>
+									<div class="card-body" style="text-align:left">
+										<span class="badge badge-secondary">정답</span>
+										<div th:text="${question.correctAnswer}" style="margin-left:10px"></div>
+									</div>
+									<div class="card-body" align="right">
+										<button type="button" class="btn btn-outline-secondary btn-sm"
+											data-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<a th:href="@{/question/edit(uuid=${question.uuid})}">
+						<button type="button" class="btn btn-outline-danger btn-sm">
+										변경</button></a>
+					
+					<a th:href="@{/question/delete(uuid=${question.uuid})}" >
+					<button type="button" 
+						class="btn btn-outline-secondary btn-sm" data-toggle="popover" data-html="true">
+						삭제</button></a>
+					
+					
+
+    			</td>
+    		</tr>
+    	</table>
+		
+		<br/>
+		
+		<div class="row">
+			<div class="col-sm">
+			<a th:href="@{'/question/list?page_gubun=' + 'first'}" 
+      class="btn btn-outline-secondary btn-sm" role="button">처음</a>
+<a th:href="@{'/question/list?page_gubun=' + 'previous'}" 
+      class="btn btn-outline-secondary btn-sm" role="button">이전</a>
+      
+      
+&nbsp;&nbsp;      
+<span class="badge badge-info">
+<i class="fas fa-comments">현재 페이지</i>
+</span>  
+/
+<span class="badge badge-info">전체 페이지수</span>      
+      
+<a th:href="@{'/question/list?page_gubun=' + 'next'}" 
+      class="btn btn-outline-secondary btn-sm" role="button">다음</a>
+<a th:href="@{'/question/list?page_gubun=' + 'last'}" 
+      class="btn btn-outline-secondary btn-sm" role="button">마지막</a>
+			</div>
+			<div class="col-sm">
+				표시건수
+				<select th:name="page_size">
+					<option th:each="pagesize : ${pagingModel.pageSizes}"
+						th:value="${pagesize}"
+						th:text="${pagesize}"/>
+					</select>
+			
+			</div>
+			
+		</div>
+		
+</div>
+	</div>
+	
+  
+	</body>
+</html>

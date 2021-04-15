@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th= "http://www.thymeleaf.org">
+ 
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/question/tested}" th:method="post">
+	<table>
+		<tr th:each="tested : ${testedList}">
+			<td th:text="${tested.title}">
+			</td>
+			<td th:name="${tested.id}">
+				<!--  선택지 라디오 단추 --> 
+			</td>
+			<td>
+			</td>
+			
+		</tr>
+	</table>
+	<!--  페이지 이동 마지막 페이지에는 시험 제출 단추 표시-->
+	
+	</form>
+</body>
+</html>

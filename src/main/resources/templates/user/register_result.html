@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/main_layout}">
+<head>
+	<meta charset="UTF-8">
+	<title>문제 등록</title>
+	
+	<style>
+		.bold{ font-weight: bold;}
+		.error{
+			color: red; font-style: italic; font-weight: bold;
+		}
+		
+		body{
+			font-family: 맑은고딕;
+		}
+		
+		input.ko{
+			ime-mode:active;
+		}
+		
+	 	input[id="a"] {
+        position: relative;
+        top: 1px;
+        margin-right: 2px;
+      	}
+      	
+      	label {
+        position: relative;
+        top: 1px;
+        bottom: 0px;
+        margin: 0px;
+      }
+		
+		</style>
+</head>
+
+<body>
+  	<form th:action= "@{add}" th:object= "${questionForm}" method= "post" class= "form-horizontal">
+    <div class= "container col-5" style= "margin-top: 10px;">
+    	
+    	<!-- 상단 메뉴 -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-3 pt-0 pb-0" style= " border-radius: 5px;">
+			<a class="navbar-brand" href="#">문제은행</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						문제은행
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" th:href="@{'/question/add'}">문제출제</a>
+						<a class="dropdown-item" th:href="@{'/question/all_list'}">문제보기</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Test
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">시험 보기</a>
+						<a class="dropdown-item" href="#">시험 결과</a>
+						<a class="dropdown-item" href="#"></a>
+					</div>
+					</li>
+				</ul>
+				<span class="navbar-text"><a th:href="@{'/user/register'}" class= "nav-link pr-0"> 회원가입</a></span>
+				<span class="navbar-text"><a th:href="@{'/user/login'}" class= "nav-link pr-0">로그인</a></span>
+			</div>
+		</nav>    
+		<!-- End 상단메뉴 -->  
+		 
+		<div>등록완료</div>
+		
+
+    </div>
+    </form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   
+</body>
+</html>
+

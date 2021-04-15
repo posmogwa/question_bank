@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	layout:decorate="~{layout/main_layout}">
+	<head>
+	<meta charset="UTF-8">
+	<title>문제 등록 결과</title>
+	
+</head>
+  <body>
+    <div class= "container col-5" style= "margin-top: 10px;">
+    
+    	
+
+    	<h4 class= "mb-3 text-center">등록 결과 <span class="badge badge-warning">New</span></h4>
+        <div class="card mb-3">
+            <div class="card-header mb-2"  th:text= "${question_title}"></div>
+            <div class="input-group-prepend"   th:each= "q, status : ${#strings.listSplit(question, ',')}">
+                <span class="input-group-text mr4" th:text= "${new com.ezen.question_bank.CircleNumber().getOneCircleNum(status.index)}" ></span>
+                <div class="form-control" th:text= "${q}"></div>
+            </div>
+            <div class="input-group-prepend mt-2 mb-2">
+                <span class="input-group-text">정답</span>
+                <div class= "form-control">
+                    <div th:text= "${correct_answer + '번'}"></div>
+                </div>
+                <button id= "submit" onclick= "home()" class="btn btn-outline-secondary btn-sm" type="submit">등록 화면으로</button>
+            </div>
+			<div class="card-footer text-muted text-right " th:text= "#{qudstion.add.result.bottom}"></div>
+        </div>
+
+	
+	</div>
+    
+    
+    
+  </body>
+</html>
+
